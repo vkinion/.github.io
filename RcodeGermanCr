@@ -1,0 +1,282 @@
+library(readr)
+GermanCredit <- read_csv("GermanCredit.csv")
+## Parsed with column specification:
+## cols(
+##   .default = col_double()
+## )
+## See spec(...) for full column specifications.
+View(GermanCredit)#Load File
+str(GermanCredit)#Structure of list observations number of variables
+## Classes 'spec_tbl_df', 'tbl_df', 'tbl' and 'data.frame': 1000 obs. of  32 variables:
+##  $ OBS#            : num  1 2 3 4 5 6 7 8 9 10 ...
+##  $ CHK_ACCT        : num  0 1 3 0 0 3 3 1 3 1 ...
+##  $ DURATION        : num  6 48 12 42 24 36 24 36 12 30 ...
+##  $ HISTORY         : num  4 2 4 2 3 2 2 2 2 4 ...
+##  $ NEW_CAR         : num  0 0 0 0 1 0 0 0 0 1 ...
+##  $ USED_CAR        : num  0 0 0 0 0 0 0 1 0 0 ...
+##  $ FURNITURE       : num  0 0 0 1 0 0 1 0 0 0 ...
+##  $ RADIO/TV        : num  1 1 0 0 0 0 0 0 1 0 ...
+##  $ EDUCATION       : num  0 0 1 0 0 1 0 0 0 0 ...
+##  $ RETRAINING      : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ AMOUNT          : num  1169 5951 2096 7882 4870 ...
+##  $ SAV_ACCT        : num  4 0 0 0 0 4 2 0 3 0 ...
+##  $ EMPLOYMENT      : num  4 2 3 3 2 2 4 2 3 0 ...
+##  $ INSTALL_RATE    : num  4 2 2 2 3 2 3 2 2 4 ...
+##  $ MALE_DIV        : num  0 0 0 0 0 0 0 0 1 0 ...
+##  $ MALE_SINGLE     : num  1 0 1 1 1 1 1 1 0 0 ...
+##  $ MALE_MAR_or_WID : num  0 0 0 0 0 0 0 0 0 1 ...
+##  $ CO-APPLICANT    : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ GUARANTOR       : num  0 0 0 1 0 0 0 0 0 0 ...
+##  $ PRESENT_RESIDENT: num  4 2 3 4 4 4 4 2 4 2 ...
+##  $ REAL_ESTATE     : num  1 1 1 0 0 0 0 0 1 0 ...
+##  $ PROP_UNKN_NONE  : num  0 0 0 0 1 1 0 0 0 0 ...
+##  $ AGE             : num  67 22 49 45 53 35 53 35 61 28 ...
+##  $ OTHER_INSTALL   : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ RENT            : num  0 0 0 0 0 0 0 1 0 0 ...
+##  $ OWN_RES         : num  1 1 1 0 0 0 1 0 1 1 ...
+##  $ NUM_CREDITS     : num  2 1 1 1 2 1 1 1 1 2 ...
+##  $ JOB             : num  2 2 1 2 2 1 2 3 1 3 ...
+##  $ NUM_DEPENDENTS  : num  1 1 2 2 2 2 1 1 1 1 ...
+##  $ TELEPHONE       : num  1 0 0 0 0 1 0 1 0 0 ...
+##  $ FOREIGN         : num  0 0 0 0 0 0 0 0 0 0 ...
+##  $ RESPONSE        : num  1 0 1 1 0 1 1 1 1 0 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   `OBS#` = col_double(),
+##   ..   CHK_ACCT = col_double(),
+##   ..   DURATION = col_double(),
+##   ..   HISTORY = col_double(),
+##   ..   NEW_CAR = col_double(),
+##   ..   USED_CAR = col_double(),
+##   ..   FURNITURE = col_double(),
+##   ..   `RADIO/TV` = col_double(),
+##   ..   EDUCATION = col_double(),
+##   ..   RETRAINING = col_double(),
+##   ..   AMOUNT = col_double(),
+##   ..   SAV_ACCT = col_double(),
+##   ..   EMPLOYMENT = col_double(),
+##   ..   INSTALL_RATE = col_double(),
+##   ..   MALE_DIV = col_double(),
+##   ..   MALE_SINGLE = col_double(),
+##   ..   MALE_MAR_or_WID = col_double(),
+##   ..   `CO-APPLICANT` = col_double(),
+##   ..   GUARANTOR = col_double(),
+##   ..   PRESENT_RESIDENT = col_double(),
+##   ..   REAL_ESTATE = col_double(),
+##   ..   PROP_UNKN_NONE = col_double(),
+##   ..   AGE = col_double(),
+##   ..   OTHER_INSTALL = col_double(),
+##   ..   RENT = col_double(),
+##   ..   OWN_RES = col_double(),
+##   ..   NUM_CREDITS = col_double(),
+##   ..   JOB = col_double(),
+##   ..   NUM_DEPENDENTS = col_double(),
+##   ..   TELEPHONE = col_double(),
+##   ..   FOREIGN = col_double(),
+##   ..   RESPONSE = col_double()
+##   .. )
+summary(GermanCredit)#Summary statistics for variables
+##       OBS#           CHK_ACCT        DURATION       HISTORY     
+##  Min.   :   1.0   Min.   :0.000   Min.   : 4.0   Min.   :0.000  
+##  1st Qu.: 250.8   1st Qu.:0.000   1st Qu.:12.0   1st Qu.:2.000  
+##  Median : 500.5   Median :1.000   Median :18.0   Median :2.000  
+##  Mean   : 500.5   Mean   :1.577   Mean   :20.9   Mean   :2.545  
+##  3rd Qu.: 750.2   3rd Qu.:3.000   3rd Qu.:24.0   3rd Qu.:4.000  
+##  Max.   :1000.0   Max.   :3.000   Max.   :72.0   Max.   :4.000  
+##     NEW_CAR         USED_CAR       FURNITURE        RADIO/TV      EDUCATION   
+##  Min.   :0.000   Min.   :0.000   Min.   :0.000   Min.   :0.00   Min.   :0.00  
+##  1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.00   1st Qu.:0.00  
+##  Median :0.000   Median :0.000   Median :0.000   Median :0.00   Median :0.00  
+##  Mean   :0.234   Mean   :0.103   Mean   :0.181   Mean   :0.28   Mean   :0.05  
+##  3rd Qu.:0.000   3rd Qu.:0.000   3rd Qu.:0.000   3rd Qu.:1.00   3rd Qu.:0.00  
+##  Max.   :1.000   Max.   :1.000   Max.   :1.000   Max.   :1.00   Max.   :1.00  
+##    RETRAINING        AMOUNT         SAV_ACCT       EMPLOYMENT   
+##  Min.   :0.000   Min.   :  250   Min.   :0.000   Min.   :0.000  
+##  1st Qu.:0.000   1st Qu.: 1366   1st Qu.:0.000   1st Qu.:2.000  
+##  Median :0.000   Median : 2320   Median :0.000   Median :2.000  
+##  Mean   :0.097   Mean   : 3271   Mean   :1.105   Mean   :2.384  
+##  3rd Qu.:0.000   3rd Qu.: 3972   3rd Qu.:2.000   3rd Qu.:4.000  
+##  Max.   :1.000   Max.   :18424   Max.   :4.000   Max.   :4.000  
+##   INSTALL_RATE      MALE_DIV     MALE_SINGLE    MALE_MAR_or_WID  CO-APPLICANT  
+##  Min.   :1.000   Min.   :0.00   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+##  1st Qu.:2.000   1st Qu.:0.00   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+##  Median :3.000   Median :0.00   Median :1.000   Median :0.000   Median :0.000  
+##  Mean   :2.973   Mean   :0.05   Mean   :0.548   Mean   :0.092   Mean   :0.041  
+##  3rd Qu.:4.000   3rd Qu.:0.00   3rd Qu.:1.000   3rd Qu.:0.000   3rd Qu.:0.000  
+##  Max.   :4.000   Max.   :1.00   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+##    GUARANTOR     PRESENT_RESIDENT  REAL_ESTATE    PROP_UNKN_NONE 
+##  Min.   :0.000   Min.   :1.000    Min.   :0.000   Min.   :0.000  
+##  1st Qu.:0.000   1st Qu.:2.000    1st Qu.:0.000   1st Qu.:0.000  
+##  Median :0.000   Median :3.000    Median :0.000   Median :0.000  
+##  Mean   :0.052   Mean   :2.845    Mean   :0.282   Mean   :0.154  
+##  3rd Qu.:0.000   3rd Qu.:4.000    3rd Qu.:1.000   3rd Qu.:0.000  
+##  Max.   :1.000   Max.   :4.000    Max.   :1.000   Max.   :1.000  
+##       AGE        OTHER_INSTALL        RENT          OWN_RES     
+##  Min.   :19.00   Min.   :0.000   Min.   :0.000   Min.   :0.000  
+##  1st Qu.:27.00   1st Qu.:0.000   1st Qu.:0.000   1st Qu.:0.000  
+##  Median :33.00   Median :0.000   Median :0.000   Median :1.000  
+##  Mean   :35.55   Mean   :0.186   Mean   :0.179   Mean   :0.713  
+##  3rd Qu.:42.00   3rd Qu.:0.000   3rd Qu.:0.000   3rd Qu.:1.000  
+##  Max.   :75.00   Max.   :1.000   Max.   :1.000   Max.   :1.000  
+##   NUM_CREDITS         JOB        NUM_DEPENDENTS    TELEPHONE    
+##  Min.   :1.000   Min.   :0.000   Min.   :1.000   Min.   :0.000  
+##  1st Qu.:1.000   1st Qu.:2.000   1st Qu.:1.000   1st Qu.:0.000  
+##  Median :1.000   Median :2.000   Median :1.000   Median :0.000  
+##  Mean   :1.407   Mean   :1.904   Mean   :1.155   Mean   :0.404  
+##  3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:1.000   3rd Qu.:1.000  
+##  Max.   :4.000   Max.   :3.000   Max.   :2.000   Max.   :1.000  
+##     FOREIGN         RESPONSE  
+##  Min.   :0.000   Min.   :0.0  
+##  1st Qu.:0.000   1st Qu.:0.0  
+##  Median :0.000   Median :1.0  
+##  Mean   :0.037   Mean   :0.7  
+##  3rd Qu.:0.000   3rd Qu.:1.0  
+##  Max.   :1.000   Max.   :1.0
+Load Packages
+library(arules)#install packages for asso rule
+## Loading required package: Matrix
+## 
+## Attaching package: 'arules'
+## The following objects are masked from 'package:base':
+## 
+##     abbreviate, write
+library(arulesViz)#install packages for asso rule visuals
+## Loading required package: grid
+## Registered S3 method overwritten by 'seriation':
+##   method         from 
+##   reorder.hclust gclus
+library(carat)
+## Warning: package 'carat' was built under R version 3.6.3
+library(rpart)#install packages for trees
+library(rpart.plot)#install package for tree visuals
+## Warning: package 'rpart.plot' was built under R version 3.6.3
+library(adabag)
+## Warning: package 'adabag' was built under R version 3.6.3
+## Loading required package: caret
+## Loading required package: lattice
+## Loading required package: ggplot2
+## Loading required package: foreach
+## Loading required package: doParallel
+## Warning: package 'doParallel' was built under R version 3.6.3
+## Loading required package: iterators
+## Loading required package: parallel
+library(tree)
+## Warning: package 'tree' was built under R version 3.6.3
+Divide Data into Training and Validation
+# partitioning into training (60%) and validation (40%)
+# randomly sample 60% of the row IDs for training; the remaining 40% serve as
+# validation
+train.rows <- sample(rownames(GermanCredit), dim(GermanCredit)[1]*0.6)
+# collect all the columns with training row ID into training set:
+train.data <- GermanCredit[train.rows, ]
+# assign row IDs that are not already in the training set, into validation
+valid.rows <- setdiff(rownames(GermanCredit), train.rows)
+valid.data <- GermanCredit[valid.rows, ]
+Create Dataframes for Training and Validation
+# create 2 data frames by collecting all columns from the appropriate rows
+train.data <- GermanCredit[train.rows, ]
+valid.data <- GermanCredit[valid.rows, ]
+Inspect Training and Validation Dataframes
+#inspect the training and validation dataframes
+head(train.data)
+## Registered S3 method overwritten by 'cli':
+##   method     from
+##   print.tree tree
+## # A tibble: 6 x 32
+##   `OBS#` CHK_ACCT DURATION HISTORY NEW_CAR USED_CAR FURNITURE `RADIO/TV`
+##    <dbl>    <dbl>    <dbl>   <dbl>   <dbl>    <dbl>     <dbl>      <dbl>
+## 1    175        0       21       3       0        0         0          0
+## 2    980        1       15       1       1        0         0          0
+## 3    750        3       15       2       0        1         0          0
+## 4    540        2       18       2       0        0         1          0
+## 5    790        0       40       4       0        0         0          0
+## 6    954        3       36       2       0        0         1          0
+## # ... with 24 more variables: EDUCATION <dbl>, RETRAINING <dbl>, AMOUNT <dbl>,
+## #   SAV_ACCT <dbl>, EMPLOYMENT <dbl>, INSTALL_RATE <dbl>, MALE_DIV <dbl>,
+## #   MALE_SINGLE <dbl>, MALE_MAR_or_WID <dbl>, `CO-APPLICANT` <dbl>,
+## #   GUARANTOR <dbl>, PRESENT_RESIDENT <dbl>, REAL_ESTATE <dbl>,
+## #   PROP_UNKN_NONE <dbl>, AGE <dbl>, OTHER_INSTALL <dbl>, RENT <dbl>,
+## #   OWN_RES <dbl>, NUM_CREDITS <dbl>, JOB <dbl>, NUM_DEPENDENTS <dbl>,
+## #   TELEPHONE <dbl>, FOREIGN <dbl>, RESPONSE <dbl>
+nrow(train.data)
+## [1] 600
+head(valid.data)
+## # A tibble: 6 x 32
+##   `OBS#` CHK_ACCT DURATION HISTORY NEW_CAR USED_CAR FURNITURE `RADIO/TV`
+##    <dbl>    <dbl>    <dbl>   <dbl>   <dbl>    <dbl>     <dbl>      <dbl>
+## 1      1        0        6       4       0        0         0          1
+## 2      2        1       48       2       0        0         0          1
+## 3      5        0       24       3       1        0         0          0
+## 4     14        0       24       4       1        0         0          0
+## 5     15        0       15       2       1        0         0          0
+## 6     17        3       24       4       0        0         0          1
+## # ... with 24 more variables: EDUCATION <dbl>, RETRAINING <dbl>, AMOUNT <dbl>,
+## #   SAV_ACCT <dbl>, EMPLOYMENT <dbl>, INSTALL_RATE <dbl>, MALE_DIV <dbl>,
+## #   MALE_SINGLE <dbl>, MALE_MAR_or_WID <dbl>, `CO-APPLICANT` <dbl>,
+## #   GUARANTOR <dbl>, PRESENT_RESIDENT <dbl>, REAL_ESTATE <dbl>,
+## #   PROP_UNKN_NONE <dbl>, AGE <dbl>, OTHER_INSTALL <dbl>, RENT <dbl>,
+## #   OWN_RES <dbl>, NUM_CREDITS <dbl>, JOB <dbl>, NUM_DEPENDENTS <dbl>,
+## #   TELEPHONE <dbl>, FOREIGN <dbl>, RESPONSE <dbl>
+nrow(valid.data)
+## [1] 400
+Convert Numeric Variable to Factors Dataset
+#convert numeric variables to factors
+GermanCredit$OWN_RES<- as.factor(GermanCredit$OWN_RES)
+GermanCredit$EMPLOYMENT <- as.factor(GermanCredit$EMPLOYMENT)
+#Classification Models
+Logistic Regression
+#Train the model using training data
+#dependent variable is owns_residence:independent variable is amount & employment
+GCModel <-glm(OWN_RES ~ AMOUNT + EMPLOYMENT, data = train.data, family = "binomial")
+summary(GCModel)#summary of model
+## 
+## Call:
+## glm(formula = OWN_RES ~ AMOUNT + EMPLOYMENT, family = "binomial", 
+##     data = train.data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6517  -1.4247   0.7939   0.8382   1.3348  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)  1.093e+00  2.205e-01   4.955 7.22e-07 ***
+## AMOUNT      -7.946e-05  2.939e-05  -2.704  0.00685 ** 
+## EMPLOYMENT   4.295e-03  7.259e-02   0.059  0.95282    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 736.39  on 599  degrees of freedom
+## Residual deviance: 729.18  on 597  degrees of freedom
+## AIC: 735.18
+## 
+## Number of Fisher Scoring iterations: 4
+There is some statistical significance with amount from the coefficient and output of the model
+Run Data Through Model
+#predictions with training and validation datasets
+res <- predict(GCModel, valid.data,type = "response")
+res
+res <- predict(GCModel, train.data,type = "response")
+res
+Validate the Model
+#validate the model confsion matrix
+confmatrix <- table(Actual_values=train.data$OWN_RES, predicted_value= res >0.5)
+confmatrix
+##              predicted_value
+## Actual_values FALSE TRUE
+##             0     3  179
+##             1     4  414
+#Check Accuracy of Model
+#accuracy of prediction
+(confmatrix[[1,1]] + confmatrix[[2,2]]) / sum(confmatrix)
+## [1] 0.695
+Classification Trees
+# use rpart() to run a classification tree.
+# define rpart.control() in rpart() to determine the depth of the tree.
+class.tree <- rpart(OWN_RES ~ ., data = GermanCredit,
+control = rpart.control(maxdepth = 3), method = "class")
+## plot tree
+# use prp() to plot the tree. 
+prp(class.tree, type = 1, extra = 1, split.font = 1, varlen = -10)
