@@ -1,0 +1,22 @@
+Select  P.PERPOSHRPID
+,P.POSITIONTYPE
+,P.POSITIONCLASS
+,P.POSITIONCLASSDESC
+,s.[PositionSOCCode]
+,s.[PositionSOCCodeDesc]
+,P.POSITIONEEOCATEGORY
+,P.POSITIONEEOCATEGORYDESC
+,P.POSITIONEEORANK
+,P.POSITIONEEORANKDESC
+,P.POSITIONANNUALIZEDAMT
+,d.[PersonGender]
+,d.[PersonIPEDSRaceOrEthnicDesc]
+,p.PositionStartDate
+From [hr].[C62_EMPLOYEE_CURRENT_POSITIONS] P
+join [dbo].[C62_PERSON] d
+on d.[PersonID] = p.perposhrpid
+join[hr].[C62_POSITIONS] s
+on p.positionid = s.positionid
+where p.[PositionEndDate] is null
+and p.positiontype in('FT')
+order by P.PERPOSHRPID
